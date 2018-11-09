@@ -179,7 +179,28 @@ class BinarySearchTree {
   }
   min() {}
   max() {}
-  toString() {}
+  toString() {
+      let result = '';
+      let currentNode = this.root;
+      function recursive(node){
+          if (node.right === null && node.left === null){
+              return `Word: ${node.data.word} Definition: ${node.data.definition}`;
+          }
+          else{
+              if (node.right !== null && node.left !== null){
+                return `Word: ${node.data.word} Definition: ${node.data.definition} left: (${recursive(node.left)}) right: (${recursive(node.right)})`;
+              }
+              else if (node.right !== null){
+                  return `Word: ${node.data.word} Definition: ${node.data.definition} left: None right: (${recursive(node.right)})`;
+              }
+              else if(node.left != null){
+                  return `Word: ${node.data.word} Definition: ${node.data.definition} left: (${recursive(node.left)}) right: None`;
+              }
+          }
+      }
+      result += recursive(currentNode);
+      return result;
+  }
 }
 
 class TreeNode {
